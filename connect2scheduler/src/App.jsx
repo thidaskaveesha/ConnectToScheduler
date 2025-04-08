@@ -1,28 +1,17 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import './App.css'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "./Pages/Login";
+import Home from "./Pages/Home";
 
 function App() {
-
-  const [tasks, setTasks] = useState([]);
-
-    useEffect(() => {
-        axios.get("/api/tasks")
-            .then(response => setTasks(response.data))
-            .catch(error => console.error("Error fetching tasks:", error));
-    }, []);
-
-    return (
-        <div>
-            <h1>Task Scheduler</h1>
-            <ul>
-                {tasks.map((task, index) => (
-                    <li key={index}>{task}</li>
-                ))}
-            </ul>
-        </div>
+    return ( 
+        <Router>
+            <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/home" element={<Home />} />
+            </Routes>
+        </Router>
     );
 }
 
-export default App
-
+export default App;

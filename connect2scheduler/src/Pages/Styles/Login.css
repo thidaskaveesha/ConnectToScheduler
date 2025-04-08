@@ -1,0 +1,88 @@
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(72, 231, 144);
+}
+
+.login-container .heading{
+    background-color: rgb(37, 146, 86);
+    width: 20%;
+    height: 50%;
+    padding: 20px;
+    border-radius: 0px 20px; 
+    text-align: center;
+    color: white;
+}
+
+.login-container .heading h1{
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-top: 45%;
+    margin-bottom: 0;
+}
+
+.login-container .heading p{
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: rgb(255, 255, 255);
+}
+
+
+.login-container form{
+    width: 30%;
+    height: 50%;
+    background-color: white;
+    border-radius: 20px 20px 20px 0px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form div{
+    width: 100%;
+    margin-left: 25px;
+}
+
+.login-container form label{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgb(37, 146, 86);
+}
+.login-container form input{
+    margin-bottom: 10px;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(37, 146, 86);
+    padding-left: 10px;
+    margin-top: 5px;
+}
+
+.login-container form input:focus{
+    outline: none;
+    border: 2px solid rgb(20, 114, 62);
+}
+
+.login-container form button{
+    width: 90%;
+    height: 40px;
+    background-color: rgb(37, 146, 86);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-container form button:hover{
+    background-color: rgb(20, 114, 62);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+    transform: scale(1.05);
+}
