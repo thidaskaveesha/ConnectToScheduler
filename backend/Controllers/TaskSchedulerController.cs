@@ -1,23 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Win32.TaskScheduler;
-using System.Collections.Generic;
+﻿using backend.Models;
+using backend.Services;
+using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/tasks")]
 public class TaskSchedulerController : ControllerBase
 {
-    [HttpGet]
-    public IActionResult GetTasks()
-    {
-        List<string> tasks = new List<string>();
+    private readonly ITaskSchedulerService _taskSchedulerService;
 
-        // Connect to the Task Scheduler
-        TaskService ts = new TaskService();
-        foreach (Task task in ts.AllTasks)
+    public TaskSchedulerController(ITaskSchedulerService taskSchedulerService)
+    {
+        _taskSchedulerService = taskSchedulerService;
+    }
+
+    // Get All tasks schedule in the root folder ( specific user )
+    [HttpGet]
+    public IActionResult GetUserCreatedTasks()
+    {
+        var tasks = _taskSchedulerService.GetUserCreatedTasks();
+        return Ok(tasks);
+    }
+
+    // Change task status on a specific task 
+    [HttpPost("change-status")]
+    public IActionResult ChangeTaskStatus([FromBody] ChangeTaskStateRequest request)
+    {
+        var response = _taskSchedulerService.ChangeTaskStatus(request);
+
+        if (response.Status == "not found" || response.Status == "invalid")
         {
-            tasks.Add(task.Name);
+            return BadRequest(response);
         }
 
-        return Ok(tasks);
+        return Ok(response);
     }
 }
